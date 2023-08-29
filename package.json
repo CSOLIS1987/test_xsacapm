@@ -1,0 +1,37 @@
+{
+  "name": "pocapapp2",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "express": "^4",
+    "hana-cli": "^3.202308.1",
+    "hdb": "^0.19.5"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^7"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "build": "mbt build --mtar pocapapp",
+    "build:cds": "cds build --production",
+    "deploy": "cf deploy mta_archives/pocapapp2.mtar --retries 1"
+  },
+  "cds": {
+    "build": {
+      "target": "./gen"
+    },
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  }
+}
